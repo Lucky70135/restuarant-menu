@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <h1 class="title">Hello World! </h1>
+      <p id="currentTime"></p>
+      <script src="script.js"></script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Restaurant Menu</h1>
+        <input type="text" id="search" placeholder="Search menu...">
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="appetizers">Appetizers</option>
+            <option value="mains">Mains</option>
+            <option value="desserts">Desserts</option>
+        </select>
+    </header>
+    <main id="menuItems">
+        <!-- Menu items will be dynamically generated here -->
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
