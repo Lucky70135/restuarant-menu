@@ -1,0 +1,63 @@
+function showTime() {
+	document.getElementById('currentTime').innerHTML = new Date().toUTCString();
+}
+showTime();
+setInterval(function () {
+	showTime();
+}, 1000);
+// Sample menu data (can be replaced with actual data or fetched from a backend)
+const menuItems = [
+    { category: 'appetizers', name: 'Caprese Salad', description: 'Fresh mozzarella, tomatoes, basil', price: 8.99 },
+    { category: 'appetizers', name: 'Bruschetta', description: 'Toasted bread topped with tomatoes, garlic, basil', price: 7.99 },
+    { category: 'mains', name: 'Spaghetti Bolognese', description: 'Traditional Italian meat sauce', price: 12.99 },
+    { category: 'mains', name: 'Margherita Pizza', description: 'Tomato sauce, mozzarella, basil', price: 11.99 },
+    { category: 'desserts', name: 'Tiramisu', description: 'Coffee-flavored Italian dessert', price: 6.99 },
+    { category: 'desserts', name: 'Chocolate Lava Cake', description: 'Warm chocolate cake with a gooey center', price: 5.99 }
+];
+
+// Function to generate menu items based on the provided data
+function generateMenuItems(menu) {
+    const menuContainer = document.getElementById('menuItems');
+    menuContainer.innerHTML = '';
+
+    menu.forEach(item => {
+        const itemHTML = `
+            <div class="menuItem">
+                <h3>${item.name}</h3>
+                <p><strong>Description:</strong> ${item.description}</p>
+                <p><strong>Price:</strong> $${item.price.toFixed(2)}</p>
+            </div>
+        `;
+        menuContainer.innerHTML += itemHTML;
+    });
+}
+
+// Initial display of all menu items
+generateMenuItems(menuItems);
+
+// Filtering based on category selection
+const categoryFilter = document.getElementById('categoryFilter');
+categoryFilter.addEventListener('change', function() {
+    const selectedCategory = this.value;
+    let filteredMenu;
+
+    if (selectedCategory === 'all') {
+        filteredMenu = menuItems;
+    } else {
+        filteredMenu = menuItems.filter(item => item.category === selectedCategory);
+    }
+
+    generateMenuItems(filteredMenu);
+});
+
+// Search functionality
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const filteredMenu = menuItems.filter(item =>
+        item.name.toLowerCase().includes(searchTerm) ||
+        item.description.toLowerCase().includes(searchTerm)
+    );
+
+    generateMenuItems(filteredMenu);
+});
